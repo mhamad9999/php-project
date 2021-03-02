@@ -1,0 +1,142 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/jquery.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+    	#logout
+    	{
+    		margin-top: 4em;
+    		margin-left: 4em;
+    	}
+    </style>
+
+</head>
+<body>
+
+
+
+
+		<div class="container">
+		  <h2>Filtering task page</h2>
+		  		  <div class="form-inline" >
+		   
+			<p>Enter the value that you want include in the tasks: </p>
+		      <div class="form-group">
+			      <label for="title">Title</label>
+			      <input type="text" class="form-control" id="Title" placeholder="Enter Title" id="title" name="Title" >
+		      </div>
+
+		      <div class="form-group">
+			      <label for="Description">Description:</label>
+			      <input type="text" class="form-control" id="Description" placeholder="Enter Description" id="Description" name="Description">
+		      </div>
+
+
+		      <div class="form-group">
+			      <label for="Schedualed_date">Schedualed date</label>
+			      <input type="date" class="form-control" id="Schedualed date" placeholder="Enter Schedualed Date" id="Schedualed_date" name="Schedualed_date">
+		      </div>
+
+
+
+		      <div class="form-group">
+			      <label for="Due_date">Due date</label>
+			      <input type="date" class="form-control" id="Due date" placeholder="Enter Due Date" id="Due_date" name="Due_date">
+		      </div>
+
+
+		      <div class="form-group">
+		       <label for="priority">Priority</label>
+		       <select id="priority" name="priority">
+		       	    <option value=""> </option>
+				    <option value="A">A</option>
+				    <option value="B">B</option>
+				    <option value="C">C</option>
+			    </select>
+
+			  </div>
+
+		      <div class="form-group">
+			      <label for="tag">Tag:</label>
+			      <input type="text" class="form-control" id="tag" placeholder="Enter tag" id="tag" name="tag">
+		      </div>
+
+     		  
+
+
+		
+
+		    <button id="btn-click" name="add" class="btn btn-default">Search</button>
+		</div>
+
+
+		<div id="table"></div>
+	</div>
+		
+
+		
+
+		
+
+		<a href="index" class="btn btn-primary btn-lg">
+          <span class="glyphicon glyphicon-log-out">Back to Home</span> 
+			 
+
+		  <input id="anjam" type='hidden' data-name="1">		
+		<script>
+			$(document).ready(function (){
+			
+
+				$.ajax({
+						url  : 'auth.php',
+						success:  function(data)
+						{
+							$('input[type="hidden"]').val(data);
+							var re= $('input[type="hidden"]').val();
+
+							if(re !== "ok"){
+								window.location.replace("index");
+								}
+							}
+						});
+			
+
+ $( "#btn-click" ).click(function() {
+  
+var Title=$("#Title").val();
+var Description=$("#Description").val();
+var Schedualed_date=$("#Schedualed_date").val();
+var Due_date=$("#Due_date").val();
+
+var tag=$("#tag").val();
+var priority=$("#priority").val();
+
+var link='search.php?Title='+Title+'&Description='+Description+'&Schedualed_date='+Schedualed_date+'&Due_date='+Due_date+'&tag='+tag+'&priority='+priority;
+$.ajax({
+   url  : link,
+  
+   success:  function(data)
+   {
+
+	$('#table').html(data);
+   }
+});
+
+
+});
+
+
+
+		});
+		</script>
+</body>
+</html>

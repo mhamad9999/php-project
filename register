@@ -1,0 +1,77 @@
+
+
+
+<html>	
+
+    <title>register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="js/jquery.js"></script>
+      <!-- https://stackoverflow.com/questions/17333901/php-form-on-submit-stay-on-same-page-->
+	<body>
+
+		<div class="container">
+		<label for="un"> <b>Username</b> </label>
+		<input type="text" placeholder="Enter Username" id="un" name="un" required>
+
+		<label for="pass"> <b>Password</b> </label>
+		<input  value="encrypt" type="Password"  placeholder="Enter password" id="pass" name="pass" required="">
+
+		<label for="first_name"> <b>first name</b> </label>
+		<input type="text" placeholder="Enter first_name" id="first_name" name="first_name" required>
+
+		<label for="last_name"> <b>last name</b> </label>
+		<input type="text" placeholder="Enter last_name" id="last_name" name="last_name" required>
+		
+		<button id="btn-click" name="register">register</button>
+
+    <a href="login" class="btn btn-primary">login</a>
+
+		
+		</div>
+		<script>
+  $(document).ready(function (){
+
+    
+    $.ajax({
+						url  : 'auth.php',
+						success:  function(data)
+						{
+							$('input[type="hidden"]').val(data);
+							var re= $('input[type="hidden"]').val();
+
+							if(re == "ok"){
+								window.location.replace("index");
+								}
+							}
+						});
+
+$( "#btn-click" ).click(function() {
+  
+  var un=$("#un").val();
+  var pass=$("#pass").val();
+  var first_name=$("#first_name").val();
+  var last_name=$("#last_name").val();
+          $.ajax({
+          url  : 'register.php',
+          type : 'POST',
+          data : {un:un,
+                  pass:pass,
+                 first_name:first_name,
+                 last_name:last_name},
+                  dataType: 'json',
+          success:  function(data)
+          {
+
+      console.log(data);
+          }
+          });
+        });
+  
+  });
+
+        </script>	
+	</body>
+</html>

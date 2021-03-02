@@ -1,0 +1,62 @@
+
+
+ <!DOCTYPE html>  
+ <html>  
+      <head>  
+           <title></title>  
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="js/jquery.js"></script>
+
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+      </head>  
+      <body>  
+           <br />  
+           <div class="container" style="width:800px;">  
+              <div id="table">
+
+
+              </div>                
+              
+           </div>  
+           <br />  
+
+         
+           <input id="anjam" type='hidden' data-name="1">		
+           <script>
+                $(document).ready(function (){
+                
+ 
+                     $.ajax({
+                               url  : 'auth.php',
+                               success:  function(data)
+                               {
+                                    $('input[type="hidden"]').val(data);
+                                    var re= $('input[type="hidden"]').val();
+ 
+                                    if(re !== "ok"){
+                                         window.location.replace("index");
+                                         }
+                                    }
+                               });
+
+
+
+			$.ajax({
+		   
+		   url  : 'show.php',
+		  
+		   success :  function(data)
+		   {
+		  $('#table').html(data);
+		   }
+		
+          });
+          });
+
+               </script>
+      </body>  
+ </html>  
+
+				
+				

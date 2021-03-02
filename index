@@ -1,0 +1,80 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="js/jquery.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+			<h2>Home</h2>
+
+			<!--https://www.w3schools.com/bootstrap4/bootstrap_forms.asp-->
+			
+
+			<div class="container">
+		<a href="./logout.php" class="btn btn-primary btn-lg">
+          <span class="glyphicon glyphicon-log-out"></span> Log out </a>
+
+          <a href="./create" class="btn btn-primary btn-lg"> 
+          <span class="glyphicon glyphicon-th-list"></span> Create Task </a>
+
+          <a href="./view tasks" class="btn btn-primary btn-lg">
+          <span class="glyphicon glyphicon-eye-open"></span> View Tasks </a>
+
+          <a href="./summary" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-eye-open"></span> View Summary </a>
+
+          <a href="./delete task" class="btn btn-primary btn-lg">
+          <span class="glyphicon glyphicon-trash"></span> Delete Task </a>
+
+           <a href="./update" class="btn btn-primary btn-lg">
+          <span class="glyphicon glyphicon-cog"></span>  update Task </a>
+
+           <a href="./tagss" class="btn btn-primary btn-lg">
+          <span class="glyphicon glyphicon-plus " ></span>  Add Tag </a>
+
+           <a href="./search" class="btn btn-primary btn-lg">
+          <span class="glyphicon glyphicon-filter " ></span>  Filter Task </a>
+
+          <a href="./show" class="btn btn-primary btn-lg">
+          <span class="glyphicon glyphicon-eye-open"></span> View Tasks with Tags </a>
+
+          <input id="anjam" type='hidden' data-name="1">		
+
+          <script>
+            $(document).ready(function (){
+                $.ajax({
+						url  : 'auth.php',
+						success:  function(data)
+						{
+							$('input[type="hidden"]').val(data);
+							var re= $('input[type="hidden"]').val();
+
+							if(re !== "ok"){
+								window.location.replace("login");
+								}
+							}
+						});
+      
+        $.ajax({
+                url  : 'view tasks.php',
+                success :  function(data)
+                {
+                }
+              
+                });
+                
+          });
+          </script>
+
+		
+
+</body>
+</html>
